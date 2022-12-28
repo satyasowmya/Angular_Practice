@@ -1,0 +1,53 @@
+<div class="main">
+    <div class="filters">
+        <h2>Filters</h2>
+        <app-rating-filter [filterName]="filterText"
+        (ratingClicked)="dataReceive($event)"></app-rating-filter>
+        <app-cost-filter [filterCostName]="filterCostText" 
+        (costClicked)="costReceive($event)"></app-cost-filter>
+    </div>
+    <div class="content" *ngIf="catData && catData.length; else noData">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input placeholder="Enter Product Name" class="form-control" [(ngModel)]="userInput"/>
+                </div>
+                <p>Results for: <b>{{userInput}}</b></p>
+                <p>Number of Results: {{(catData | searchFilter:userInput).length}}</p>
+            </div>
+        </div>
+        <div *ngFor="let data of catData | searchFilter:userInput">
+            <a class="custom-card-anchor" [routerLink]="['/details']" [queryParams]="{prodName:itemType,id:data.item_id}">
+                <div class="card custom-card">
+                    <img [src]="data.image" [alt]="data.description" 
+                    class="card-img-top card-img-width image"/>
+                    <div class="card-body">
+                        <div class="card-title description">{{data.description | myUpper}}</div>
+                        <div class="card-text">
+                            <div class="brand">
+                                <i class="fa-solid fa-copyright"></i>
+                                {{data.brand?data.brand:data.more_data4}}
+                            </div>
+                        </div>
+                        <br/>
+                        <span class="rating">
+                            <button class="btn btn-success btn-sm">
+                                <span class="stars">{{data.hidden_stars}}&nbsp;
+                                <i class="fa-solid fa-star"></i>
+                                </span>
+                           </button>
+                        </span>
+                        <br/>
+                        <div class="price">
+                            <span class="new_price">{{data.new_price | currency:'INR'}}</span>&nbsp;&nbsp;
+                            <del><span>{{data.old_price | currency:'INR'}}</span></del>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<ng-template #noData>
+    <img src="../../assets/loader.gif"/>
+</ng-template>

@@ -1,0 +1,77 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { ClothsComponent } from './home/cloths/cloths.component';
+import { MobileComponent } from './home/mobile/mobile.component';
+import { WatchComponent } from './home/watches/watch.component';
+import { FormalComponent } from './home/formals/formal.component';
+import { ListingComponent } from './listing/listing.component';
+import { NotFoundComponent } from './notfound/notfound.component';
+import { RatingComponent } from './filters/rating.component';
+import { DetailsComponent } from './details/details.component';
+import { CostFilterComponent} from './filters/costFilter.component'
+
+import { HomeService } from './services/home.service';
+import { ListingService } from './services/listing.service';
+
+import { MyupperPipe } from './pipe/myupper.pipe';
+import { ProdSearchPipe } from './pipe/searchfilter.pipe';
+import { DetailService } from './services/details.service';
+
+
+
+//decorator
+@NgModule({
+     // All the components and pipes
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        HomeComponent,
+        ClothsComponent,
+        MobileComponent,
+        WatchComponent,
+        FormalComponent,
+        ListingComponent,
+        NotFoundComponent,
+        RatingComponent,
+        DetailsComponent,
+        CostFilterComponent,
+        MyupperPipe,
+        ProdSearchPipe
+    ],
+
+     // All the modules
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        CarouselModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule
+    ],
+
+     // Only and only main component
+    bootstrap: [
+        AppComponent
+    ],
+
+     // All the services
+    providers: [
+      HomeService,
+      ListingService,
+      DetailService
+    ]
+
+})
+
+export class AppModule{}
