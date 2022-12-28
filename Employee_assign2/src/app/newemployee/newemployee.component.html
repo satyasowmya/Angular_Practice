@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Employees data from API</h1>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Employee_Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of empData">
+            <td>{{data.id}}</td>
+            <td>{{data.employee_name}}</td>
+            <td>{{data.employee_salary}}</td>
+            <td>{{data.employee_age}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
